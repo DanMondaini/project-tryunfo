@@ -5,6 +5,7 @@ class Form extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled, onSaveButtonClick, onInputChange,
+      hasTrunfo,
     } = this.props;
     return (
       <form>
@@ -87,18 +88,24 @@ class Form extends React.Component {
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
           </select>
+
         </label>
-        <label htmlFor="trunfo">
-          <input
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-            data-testid="trunfo-input"
-            type="checkbox"
-            name="cardTrunfo"
-            id="trunfo"
-          />
-          Super Trybe Trunfo
-        </label>
+
+        {
+          hasTrunfo ? <span>Você já tem um Super Trunfo em seu baralho</span> : (
+            <label htmlFor="super-tryunfo">
+              Super trunfo
+              <input
+                data-testid="trunfo-input"
+                type="checkbox"
+                name="cardTrunfo"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+                id="cardTrunfo"
+              />
+            </label>
+          )
+        }
         <label htmlFor="save">
           <button
             onClick={ onSaveButtonClick }
@@ -126,6 +133,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.bool.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onSaveButtonClick: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
