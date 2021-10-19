@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import DeckOfCards from './components/DeckOfCards';
 
 const initialState = {
   cardName: '',
@@ -142,6 +143,7 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
       hasTrunfo,
+      deck,
     } = this.state;
     return (
       <div>
@@ -170,6 +172,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <DeckOfCards deck={ deck } />
       </div>
     );
   }
